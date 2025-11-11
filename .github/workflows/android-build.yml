@@ -1,0 +1,43 @@
+# This file tells GitHub how to build your Android app
+
+name: Build Android App
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    # This build will run on a free Linux server in the cloud
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Checks out your repository's code onto the server
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    # 2. Sets up the Java (JDK) environment needed for Android
+    - name: Set up Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+
+    # 3. Sets up the Android SDK tools
+    - name: Set up Android SDK
+      uses: android-actions/setup-android@v3
+
+    # 4. Gives permission to the 'gradlew' file to run
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+
+    # 5. This command builds the debug .apk file
+    - name: Build with Gradle
+      run: ./gradlew assembleDebug
+
+    # 6. This saves the finished .apk file so you can download it
+    - name: Upload APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: app-debug.apk # This will be the name of your download
+        path: app/build/outputs/apk/debug/app-debug.apk
