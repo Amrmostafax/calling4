@@ -1,0 +1,16 @@
+# Generated files
+/build/
+/.idea/
+.gradle/
+
+# Local properties
+local.properties
+
+# Keystore files
+*.jks
+*.keystore
+# APK/AAB files
+*.apk
+*.aab
+*.aar
+*.jar
