@@ -9,8 +9,18 @@ local.properties
 # Keystore files
 *.jks
 *.keystore
+
 # APK/AAB files
 *.apk
 *.aab
 *.aar
-*.jar
+
+# IMPORTANT: DO NOT ignore gradle-wrapper.jar
+# It's needed for the build to work
+# Remove this line: *.jar
+
+# Instead, only ignore JAR files in specific locations:
+# Ignore JAR files in the libs folder
+app/libs/*.jar
+# But keep the gradle wrapper jar
+!gradle/wrapper/gradle-wrapper.jar
