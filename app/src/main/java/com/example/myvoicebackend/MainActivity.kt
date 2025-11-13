@@ -1,4 +1,4 @@
-package com.example.myvoicebackend // This package must match your folder structure
+package com.example.myvoicebackend
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
-import okhttp3s.Request
+import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 import java.io.File
@@ -101,7 +101,7 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         mediaRecorder = MediaRecorder(this).apply {
             setAudioSource(MediaRecorder.AudioSource.MIC)
-            setOutputFormat(MediaControlElement.OutputFormat.MPEG_4)
+            setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
             setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
             setOutputFile(audioFile!!.absolutePath)
             try {
