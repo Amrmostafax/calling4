@@ -1,0 +1,39 @@
+# This workflow will generate the missing gradle-wrapper.jar file
+name: Fix Gradle Wrapper
+
+on:
+  workflow_dispatch: # This allows you to run it manually
+
+jobs:
+  fix-wrapper:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Set up Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+    
+    - name: Download Gradle
+      run: |
+        wget https://services.gradle.org/distributions/gradle-8.4-bin.zip
+        unzip -q gradle-8.4-bin.zip
+        
+    - name: Generate Gradle Wrapper
+      run: |
+        ./gradle-8.4/bin/gradle wrapper --gradle-version 8.4
+        
+    - name: Commit and Push Wrapper Files
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add gradle/wrapper/gradle-wrapper.jar
+        git add gradlew
+        git add gradlew.bat
+        git add gradle/wrapper/gradle-wrapper.properties
+        git commit -m "Add missing Gradle wrapper files" || echo "No changes to commit"
+        git push
