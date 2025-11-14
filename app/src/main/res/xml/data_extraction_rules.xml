@@ -4,12 +4,3 @@
         <include domain="file" path="."/>
     </cloud-backup>
 </data-extraction-rules>
-```
-
-### 6. **app/proguard-rules.pro**
-```
--keep class com.example.myvoicebackend.** { *; }
--dontwarn okhttp3.**
--keep class okhttp3.** { *; }
--keepnames class kotlinx.coroutines.internal.MainDispatcherFactory {}
--keepnames class kotlinx.coroutines.CoroutineExceptionHandler {}
