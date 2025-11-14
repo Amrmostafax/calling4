@@ -4,13 +4,12 @@ plugins {
 }
 
 android {
-    // IMPORTANT: Make sure this namespace matches your package name
     namespace = "com.example.myvoicebackend"
     compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.myvoicebackend"
-        minSdk = 24 // Android 7.0
+        minSdk = 24
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -27,14 +26,16 @@ android {
             )
         }
     }
+    
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_17
-        targetCompatibility = JavaVersion.VERSION_1_17
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
+    
     kotlinOptions {
         jvmTarget = "17"
     }
-    // This is needed to find the 'activity_main.xml'
+    
     buildFeatures {
         viewBinding = true
     }
@@ -46,7 +47,11 @@ dependencies {
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
-    // Library for making network calls to Vercel
+    // Kotlin Coroutines - REQUIRED for async operations
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+
+    // OkHttp for network calls
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
 
     testImplementation("junit:junit:4.13.2")
